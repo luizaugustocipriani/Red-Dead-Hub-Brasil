@@ -129,5 +129,54 @@ article p {
 }
 
 .form-control {
-    background-color:
+    background-color: #1f1a16 !important;
+    color: #f2efe9 !important;
+    border: 2px solid #3a322c !important;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.form-control:focus {
+    border-color: #8b0000 !important;
+    box-shadow: 0 0 8px rgba(139, 0, 0, 0.6) !important;
+}
+
+.form-control::placeholder {
+    color: #8c857e;
+}
+
+h3 {
+    font-family: 'Cinzel', serif;
+    color: #ff3c00;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+div[popover] {
+    background-color: #1a1512;
+    color: #f2efe9;
+    padding: 20px;
+    border: 2px solid #8b0000;
+    border-radius: 8px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.85);
+    max-width: 350px;
+}
+
+div[popover] ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background-color: #1f1a16;
+    border-top: 4px solid #8b0000;
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #8c857e;
 }
