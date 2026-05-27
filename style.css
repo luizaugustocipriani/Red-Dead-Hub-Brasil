@@ -111,7 +111,23 @@ article p {
     margin-bottom: 15px;
 }
 
-.btn, button, type=["submit"] {
+.btn, button, [type="submit"] {
     background: linear-gradient(45deg, #7b0000, #c40000) !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease;
+    align-self: center;
 }
 
+.btn:hover, button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(45deg, #c40000, #ff0000) !important;
+}
+
+.form-control {
+    background-color:
+}
