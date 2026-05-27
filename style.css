@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;400;500;700&display=swap');
 
 body {
     margin: 0;
@@ -19,17 +19,21 @@ header h1 {
     font-size: 3rem;
     color: #c40000;
     text-shadow: 3px 3px 8px #000;
-    margin: 0;
+    margin-bottom: 15px;
+}
+
+.nav {
+    justify-content: center;
 }
 
 .nav .nav-link {
     color: #f2efe9;
     text-decoration: none;
-    margin: 0 15px;
+    margin: 0 10px;
     font-size: 1.1rem;
     padding: 5px 15px;
     border-radius: 5px;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .nav .nav-link:hover {
@@ -38,92 +42,76 @@ header h1 {
 }
 
 main {
+    padding: 20px 0;
+}
+
+p {
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.img-fluid {
+    width: 100%;
+    border-radius: 12px;
+    border: 3px solid #8b0000;
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+    transition: 0.3s ease;
+}
+
+main > section:first-of-type p {
+    background-color: #1f1a16;
     padding: 20px;
-}
-
-/* CORREÇÃO DO ALINHAMENTO DOS QUADRANTES */
-.row {
-    display: flex !important;
-    align-items: stretch !important; /* Força os cards a terem a mesma altura */
     margin-top: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #8b0000;
 }
 
-/* Estilo dos Quadrantes (Cards) */
-section, .card {
-    background-color: #221c18 !important;
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+article {
+    background-color: #221c18;
     padding: 25px;
-    margin-bottom: 20px !important; /* Diminuído para não empurrar desalinhado */
-    border-radius: 12px !important;
-    border: none;
-    border-left: 5px solid #8b0000 !important;
+    border-radius: 12px;
+    border-left: 5px solid #8b0000;
     box-shadow: 0 0 20px rgba(0,0,0,0.7);
     color: #f2efe9;
-    
-    /* Faz o conteúdo interno se distribuir */
     display: flex;
     flex-direction: column;
     height: 100%; 
 }
 
-/* Títulos alinhados */
-h2, .card-title {
+h2 {
     font-family: 'Cinzel', serif;
-    color: #ff3c00 !important;
+    color: #ff3c00;
     margin-top: 0;
     margin-bottom: 15px;
-    min-height: 60px; /* Espaço igual para os títulos */
+    font-size: 1.6rem;
     text-align: center;
 }
 
-/* Imagens das Dicas igualadas */
-article img, .card-img-top {
+article img {
     width: 100%;
-    height: 280px; 
+    height: 250px; 
     object-fit: cover;
-    border-radius: 10px;
-    border: 3px solid #8b0000;
-    margin: 10px 0 20px 0;
-}
-
-img:hover {
-    transform: scale(1.02);
-}
-
-p, .card-text {
-    line-height: 1.7;
-    font-size: 1.05rem;
-    flex-grow: 1; /* Preenche o espaço para alinhar o botão no rodapé */
-}
-
-.btn-primary, .btn-secondary, button {
-    background: linear-gradient(45deg, #7b0000, #c40000) !important;
-    color: white !important;
-    border: none !important;
-    padding: 10px 18px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: 0.3s;
-    align-self: center;
-}
-
-.btn-primary:hover, .btn-secondary:hover, button:hover {
-    transform: scale(1.05);
-    background: linear-gradient(45deg, #c40000, #ff0000) !important;
-}
-
-div[popover] {
-    background-color: #1a1512;
-    color: #f2efe9;
-    padding: 15px;
-    border: 2px solid #8b0000;
     border-radius: 8px;
+    border: 3px solid #8b0000;
+    margin-bottom: 15px;
+    transition: 0.3s ease;
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #1f1a16;
-    border-top: 3px solid #8b0000;
-    margin-top: 50px;
+.img-fluid:hover, article img:hover {
+    transform: scale(1.01);
 }
+
+article p {
+    flex-grow: 1;
+    margin-bottom: 15px;
+}
+
+.btn, button, type=["submit"] {
+    background: linear-gradient(45deg, #7b0000, #c40000) !important;
+}
+
