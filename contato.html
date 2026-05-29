@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Dead Hub Brasil - Contato</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="container my-4 text-center header-custom">
+    <h1>Red Dead Hub Brasil</h1>
+    <nav class="nav justify-content-center mt-3">
+        <a class="nav-link" href="index.html">Início</a>
+        <a class="nav-link" href="dicas.html">Dicas</a>
+        <a class="nav-link" href="contato.html">Contato</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="mb-5 py-4 px-4 bg-card-custom rounded border-danger-custom max-width-text mx-auto">
+        <h2 class="text-danger-custom mb-3 text-center">Una-se ao Nosso Bando</h2>
+        <p class="text-center text-muted mb-4">
+            Sentiu falta de algum guia ou quer enviar uma sugestão de conteúdo? Preencha os dados abaixo para enviar sua mensagem direto para a nossa central.
+        </p>
+        
+        <form action="#" method="POST">
+            <div class="mb-3">
+                <label class="form-label text-light">Nome ou Apelido de Foragido</label>
+                <input type="text" class="form-control" placeholder="Ex: Arthur Morgan" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label text-light">Seu melhor E-mail</label>
+                <input type="email" class="form-control" placeholder="seuemail@exemplo.com" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label text-light">Assunto</label>
+                <select class="form-select">
+                    <option selected>Sugestão de Dica / Guia</option>
+                    <option>Reportar Erro no Site</option>
+                    <option>Parcerias / Outros</option>
+                </select>
+            </div>
+            
+            <div class="mb-4">
+                <label class="form-label text-light">Mensagem</label>
+                <textarea class="form-control" rows="5" placeholder="Escreva aqui a sua dica ou sugestão em detalhes..." required></textarea>
+            </div>
+            
+            <div class="text-center">
+                <button type="submit" class="btn btn-danger-custom px-5 py-2 w-100">Enviar para o Saloon</button>
+            </div>
+        </form>
+    </section>
+
+</main>
+
+<footer class="container pb-5 text-center border-top border-secondary pt-4">
+    <p class="text-muted">Desenvolvido por [Luiz Augusto]</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
