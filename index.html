@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Red Dead Hub Brasil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -24,8 +24,28 @@
     <section class="mb-5 text-center py-4 bg-cta-custom rounded">
         <h2 class="text-danger-custom mb-3">Quem Somos e Qual o Nosso Propósito</h2>
         <p class="px-4 m-0">
-            O <strong>Red Dead Hub Brasil</strong> nasceu com o objective de ser o ponto de encontro definitivo e a maior central de guias para os jogadores brasileiros de Red Dead Redemption 2. Nosso portal funciona como uma comunidade ativa onde reunimos estratégias minuciosas, desvendamos segredos do mapa e ajudamos desde pistoleiros iniciantes até os cowboys mais experientes a dominarem as complexas mecânicas desse universo.
+            O <strong>Red Dead Hub Brasil</strong> nasceu com o objective de ser o point de encontro definitivo e a maior central de guias para os jogadores brasileiros de Red Dead Redemption 2. Nosso portal funciona como uma comunidade ativa onde reunimos estratégias minuciosas, desvendamos segredos do mapa e ajudamos desde pistoleiros iniciantes até os cowboys mais experientes a dominarem as complexas mecânicas desse universo.
         </p>
+    </section>
+
+    <section class="mb-5">
+        <h2 class="text-danger-custom mb-4 text-center">Destaques do Oeste</h2>
+        <div id="carouselDestaques" class="carousel slide border-danger-custom rounded shadow-lg overflow-hidden" data-bs-ride="carousel">
+            <div class="carousel-inner" id="container-carrossel"></div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestaques" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselDestaques" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+        </div>
+    </section>
+
+    <section class="mb-5">
+        <h2 class="text-danger-custom mb-4 text-center">Personagens Catalogados</h2>
+        <div class="row g-4" id="container-cards"></div>
     </section>
 
     <section class="mb-5 section-intro">
@@ -39,7 +59,7 @@
                     Red Dead Redemption 2 é uma obra-prima de ação e aventura em mundo aberto, desenvolvida pela Rockstar Games e ambientada no ano de 1899 nos Estados Unidos. O enredo se passa no crepúsculo da era do Velho Oeste, um momento em que as forças da lei caçam as últimas gangues de fora da lei restantes. Aqueles que não se rendem ou não sucumbem são impiedosamente eliminados.
                 </p>
                 <p>
-                    A narrativa acompanha a jornada de Arthur Morgan, um habilidoso e leal membro sênior da gangue Van der Linde. Após um assalto dar terrivelmente errado na cidade de Blackwater, a gangue é forçada a fugir pelas montanhas geladas, iniciando uma constante luta pela sobrevivência. Enquanto divisões internas profundas ameaçam despedaçar o grupo, Arthur precisa escolher entre seus próprios ideais e a lealdade ao homem que o criou, Dutch van der Linde.
+                    A narrative acompanha a jornada de Arthur Morgan, um habilidoso e leal membro sênior da gangue Van der Linde. Após um assalto dar terrivelmente errado na cidade de Blackwater, a gangue é forçada a fugir pelas montanhas geladas, iniciando uma constante luta pela sobrevivência. Enquanto divisões internas profundas ameaçam despedaçar o grupo, Arthur precisa escolher entre seus próprios ideais e a lealdade ao homem que o criou, Dutch van der Linde.
                 </p>
             </div>
         </div>
@@ -71,7 +91,7 @@
 
     <section class="mb-5 text-center py-4 bg-cta-custom rounded">
         <h2 class="text-danger-custom mb-3">Prepare-se para a Jornada</h2>
-        <p class="px-3 max-width-text mx-auto">
+        <p class="px-3 max-width-text mx-auto text-center">
             Sobreviver neste ecossistema exige conhecimento técnico, armas bem cuidadas e as estratégias certas. Acesse a nossa central de guias para dominar as mecânicas essenciais do jogo ou entre em contato para sugerir novos tópicos.
         </p>
         <div class="mt-4">
@@ -87,7 +107,7 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+<script src="assets/js/app.js"></script>
 
 </body>
 </html>

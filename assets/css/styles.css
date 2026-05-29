@@ -6,7 +6,7 @@
     --bg-card-inner: #faf9f8;
     --red-primary: #8b0000;
     --red-bright: #c40000;
-    --red-accent: #ff3c00;
+    --red-accent: #be431d;
     --text-light: #f2efe9;
     --text-muted: #ffffff;
 }
@@ -173,7 +173,7 @@ p {
 }
 
 article {
-    background-color: var(--bg-card); /* Ajustado para remover o fundo branco das fotos */
+    background-color: var(--bg-card);
     padding: 25px;
     border-radius: 12px;
     border-left: 5px solid var(--red-primary);
@@ -302,7 +302,6 @@ footer p {
     color: #b0b0b0 !important; 
 }
 
-/* 1. FOCO DOS INPUTS E TEXTAREA (Campos de texto normais - SEM AS SETAS) */
 .form-control:focus, 
 input:focus, 
 textarea:focus {
@@ -311,10 +310,9 @@ textarea:focus {
     outline-width: 0 !important;
     box-shadow: 0 0 10px rgba(196, 0, 0, 0.6) !important;
     --bs-focus-ring-color: rgba(196, 0, 0, 0.6) !important;
-    background-image: none !important; /* Limpa as setas repetidas do e-mail */
+    background-image: none !important;
 }
 
-/* 2. FOCO EXCLUSIVO DO SELECT (Caixa de seleção de assunto - COM UMA SETA APENAS) */
 .form-select:focus, 
 select:focus {
     border-color: var(--red-bright) !important;
@@ -322,9 +320,49 @@ select:focus {
     outline-width: 0 !important;
     box-shadow: 0 0 10px rgba(196, 0, 0, 0.6) !important;
     --bs-focus-ring-color: rgba(196, 0, 0, 0.6) !important;
-    /* Adiciona uma única seta vermelha customizada no canto do select */
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23c40000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
     background-repeat: no-repeat !important;
     background-position: right 0.75rem center !important;
     background-size: 16px 12px !important;
+}      
+
+.carousel-img-custom {
+    height: 480px;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.carousel-caption-blur {
+    background: rgba(20, 18, 16, 0.85);
+    border-radius: 8px;
+    padding: 15px 25px;
+    border-top: 3px solid var(--red-primary);
+    backdrop-filter: blur(5px);
+    text-align: center !important;
+}
+
+.text-truncate-custom {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .carousel-img-custom { height: 260px; }
+    .carousel-caption {
+        position: relative;
+        left: 0; top: 0; right: 0;
+        padding: 15px;
+        background: var(--bg-card);
+        margin-top: 5px;
+    }
+}
+
+/* Altera a cor do crachá para Laranja */
+.badge.bg-danger {
+    background-color: #ff5500 !important;
+    --bs-bg-opacity: 1 !important;
+    color: #ffffff !important;
 }
