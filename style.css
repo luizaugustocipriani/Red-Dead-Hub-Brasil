@@ -173,7 +173,7 @@ p {
 }
 
 article {
-    background-color: var(--bg-card-inner);
+    background-color: var(--bg-card); /* Ajustado para remover o fundo branco das fotos */
     padding: 25px;
     border-radius: 12px;
     border-left: 5px solid var(--red-primary);
@@ -302,9 +302,29 @@ footer p {
     color: #b0b0b0 !important; 
 }
 
-.form-select:focus, .form-control:focus {
-    border-color: var(--red-primary) !important;
-    outline: 0 !important;
-    box-shadow: 0 0 10px rgba(139, 0, 0, 0.6) !important;
+/* 1. FOCO DOS INPUTS E TEXTAREA (Campos de texto normais - SEM AS SETAS) */
+.form-control:focus, 
+input:focus, 
+textarea:focus {
+    border-color: var(--red-bright) !important;
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: 0 0 10px rgba(196, 0, 0, 0.6) !important;
+    --bs-focus-ring-color: rgba(196, 0, 0, 0.6) !important;
+    background-image: none !important; /* Limpa as setas repetidas do e-mail */
+}
+
+/* 2. FOCO EXCLUSIVO DO SELECT (Caixa de seleção de assunto - COM UMA SETA APENAS) */
+.form-select:focus, 
+select:focus {
+    border-color: var(--red-bright) !important;
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: 0 0 10px rgba(196, 0, 0, 0.6) !important;
+    --bs-focus-ring-color: rgba(196, 0, 0, 0.6) !important;
+    /* Adiciona uma única seta vermelha customizada no canto do select */
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23c40000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.75rem center !important;
+    background-size: 16px 12px !important;
 }
