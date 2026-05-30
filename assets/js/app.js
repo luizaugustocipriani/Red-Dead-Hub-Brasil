@@ -12,7 +12,7 @@ const dados = {
       "elementos_vinculados": [
         {
           "id": 101,
-          "nome": "Revólver de Boiadeiro",
+          "nome": "Revólver de Vaqueiro",
           "descricao": "Sua arma curta customizada mais icônica e confiável.",
           "imagem": "img/vaqueiro.jpg"
         },
