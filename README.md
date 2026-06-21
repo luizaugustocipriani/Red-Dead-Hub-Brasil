@@ -1,30 +1,51 @@
-# Projeto: Site Informativo - Red Dead Redemption 2
+Markdown
+# 🤠 Red Dead Hub Brasil
 
-Este projeto foi desenvolvido como atividade prática para a disciplina de Desenvolvimento Web do curso de Engenharia de Software (1º Período). O objetivo principal é a aplicação de conceitos de estruturação HTML, estilização CSS avançada e a integração de frameworks de interface.
+Plataforma interativa com guias, busca de personagens e sistema de favoritos sobre o universo de **Red Dead Redemption 2**. Desenvolvido como atividade prática para a disciplina de Desenvolvimento Web (Engenharia de Software - 1º Período).
 
-## Sobre o Projeto
-O site consiste numa página informativa sobre o jogo Red Dead Redemption 2. A estética foi planeada para refletir a temática do título, utilizando uma paleta de cores escuras e tipografia específica.
+---
 
-## Etapas de Desenvolvimento
+## 🚀 Como Rodar o Projeto
 
-### Etapa 1: Estrutura e Estilo Base
-* Implementação de tags semânticas do HTML5 (header, nav, main, section, footer).
-* Definição da identidade visual via CSS3, incluindo o uso de Google Fonts (Cinzel e Poppins).
-* Criação de elementos interativos como áreas de anotações e componentes popover.
+Siga estes passos simples para executar o site no seu computador com todas as funcionalidades ativas:
 
-### Etapa 2: Integração com Bootstrap 5
-Nesta fase, o projeto foi refatorado para incorporar o framework Bootstrap, focando nos seguintes aspetos:
-* Responsividade: Implementação do sistema de Grid (container, row, col) para adaptação a diferentes resoluções de ecrã.
-* Componentes de Interface: Utilização de classes do Bootstrap para a barra de navegação e para a organização das dicas em cartões (cards).
-* Ajustes de Alinhamento: Aplicação de propriedades Flexbox no CSS para garantir que os blocos de conteúdo e as imagens mantenham simetria vertical e horizontal.
-* Sobrescrita de Estilos: Customização das classes nativas do framework para assegurar a permanência do design original proposto na Etapa 1.
+### 1. Pré-requisitos
+Você precisa ter o **Node.js** instalado. Baixe em: [nodejs.org](https://nodejs.org/)
 
-## Tecnologias Utilizadas
-* HTML5: Estruturação de conteúdo.
-* CSS3: Estilização personalizada e correções de layout.
-* Bootstrap 5: Framework para agilidade no desenvolvimento e responsividade.
-* Google Fonts: Importação das fontes Cinzel e Poppins.
+### 2. Configuração e Inicialização
 
-## Autor
-* Luiz Augusto
-* Aluno de Engenharia de Software - 1º Período
+1. Abra a pasta principal do projeto (`Red-Dead-Hub-Brasil`) no seu VS Code.
+2. Abra o terminal do VS Code e instale o servidor local:
+   ```bash
+   npm install json-server
+Inicie o banco de dados com o comando:
+
+Bash
+npx json-server --watch db/db.json
+⚠️ Atenção: Não feche o terminal! O servidor precisa ficar rodando para os personagens e favoritos aparecerem na tela.
+
+3. Abrir o Site
+Com o terminal rodando, abra o arquivo index.html no seu navegador (ou use a extensão Live Server do VS Code).
+
+🛠️ Recursos Implementados
+Design Temático: Identidade visual baseada no jogo com paleta escura e fontes personalizadas (Cinzel e Poppins).
+
+Responsividade Completa: Interface adaptável para celulares, tablets e computadores via Bootstrap 5.
+
+Busca em Tempo Real: Filtragem dinâmica de personagens por nome ou descrição.
+
+Sistema de Favoritos: Salvamento, listagem e remoção de favoritos integrados diretamente com a API local (fetch/POST/DELETE).
+
+🧰 Tecnologias
+HTML5 (Estrutura Semântica)
+
+CSS3 (Estilização Customizada)
+
+Bootstrap 5 (Grid e Componentes)
+
+JavaScript ES6+ (Manipulação do DOM e Consumo de API)
+
+JSON Server (Simulação de Banco de Dados)
+
+👤 Autor
+Luiz Augusto — Aluno de Engenharia de Software (1º Período)
