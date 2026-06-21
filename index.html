@@ -16,6 +16,8 @@
         <a class="nav-link" href="index.html">Início</a>
         <a class="nav-link" href="dicas.html">Dicas</a>
         <a class="nav-link" href="contato.html">Contato</a>
+        <a class="nav-link d-none" id="menu-favoritos" href="favoritos.html">Meus Favoritos</a>
+        <a class="nav-link btn btn-outline-light ms-2 px-3 py-1" id="btn-auth" href="login.html">Login</a>
     </nav>
 </header>
 
@@ -24,7 +26,7 @@
     <section class="mb-5 text-center py-4 bg-cta-custom rounded">
         <h2 class="text-danger-custom mb-3">Quem Somos e Qual o Nosso Propósito</h2>
         <p class="px-4 m-0">
-            O <strong>Red Dead Hub Brasil</strong> nasceu com o objetivo de ser o point de encontro definitivo e a maior central de guias para os jogadores brasileiros de Red Dead Redemption 2. Nosso portal funciona como uma comunidade ativa onde reunimos estratégias minuciosas, desvendamos segredos do mapa e ajudamos desde pistoleiros iniciantes até os cowboys mais experientes a dominarem as complexas mecânicas desse universo.
+            O <strong>Red Dead Hub Brasil</strong> nasceu com o objective de ser o point de encontro definitivo e a maior central de guias para os jogadores brasileiros de Red Dead Redemption 2. Nosso portal funciona como uma comunidade active onde reunimos estratégias minuciosas, desvendamos segredos do mapa e ajudamos desde pistoleiros iniciantes até os cowboys mais experientes a dominarem as complexas mecânicas desse universo.
         </p>
     </section>
 
@@ -44,6 +46,17 @@
     </section>
 
     <section class="mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" id="campo-pesquisa" class="form-control" placeholder="🔍 Pesquise por nome ou descrição do pistoleiro...">
+                    <button class="btn btn-danger-custom" id="btn-limpar-pesquisa" type="button">Limpar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-5">
         <h2 class="text-danger-custom mb-4 text-center">Personagens Catalogados</h2>
         <div class="row g-4" id="container-cards"></div>
     </section>
@@ -51,7 +64,7 @@
     <section class="mb-5 section-intro">
         <div class="row align-items-center">
             <div class="col-12 mb-4">
-                <img src="img/capa.jpg" alt="Capa Red Dead 2" class="img-fluid w-100 rounded-3 border-danger-custom shadow-lg">
+                <img src="assets/img/capa.jpg" alt="Capa Red Dead 2" class="img-fluid w-100 rounded-3 border-danger-custom shadow-lg">
             </div>
             <div class="col-12">
                 <h2 class="text-danger-custom mb-3">O Fim da Era dos Foragidos</h2>
@@ -59,7 +72,7 @@
                     Red Dead Redemption 2 é uma obra-prima de ação e aventura em mundo aberto, desenvolvida pela Rockstar Games e ambientada no ano de 1899 nos Estados Unidos. O enredo se passa no crepúsculo da era do Velho Oeste, um momento em que as forças da lei caçam as últimas gangues de fora da lei restantes. Aqueles que não se rendem ou não sucumbem são impiedosamente eliminados.
                 </p>
                 <p>
-                    A narrative acompanha a jornada de Arthur Morgan, um habilidoso e leal membro sênior da gangue Van der Linde. Após um assalto dar terrivelmente errado na cidade de Blackwater, a gangue é forçada a fugir pelas montanhas geladas, iniciando uma constante luta pela sobrevivência. Enquanto divisões internas profundas ameaçam despedaçar o grupo, Arthur precisa escolher entre seus próprios ideais e a lealdade ao homem que o criou, Dutch van der Linde.
+                    A narrativa acompanha a jornada de Arthur Morgan, um habilidoso e leal membro sênior da gangue Van der Linde. Após um assalto dar terrivelmente errado na cidade de Blackwater, a gangue é forçada a fugir pelas montanhas geladas, iniciando uma constante luta pela sobrevivência. Enquanto divisões internas profundas ameaçam despedaçar o grupo, Arthur precisa escolher entre seus próprios ideais e a lealdade ao homem que o criou, Dutch van der Linde.
                 </p>
             </div>
         </div>
