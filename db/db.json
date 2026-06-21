@@ -105,5 +105,32 @@
       "admin": false
     }
   ],
-  "favoritos": []
+  "favoritos": [
+    {
+      "usuarioId": "5i4eL2NtEb8",
+      "personajeId": "1",
+      "id": "hFYQakpsKNI"
+    },
+    {
+      "usuarioId": "5i4eL2NtEb8",
+      "personajeId": "1",
+      "id": "Y7ggVaJO_wQ"
+    },
+    {
+      "usuarioId": "5i4eL2NtEb8",
+      "personajeId": "1",
+      "id": "lWuxy4Y52PQ"
+    },
+    {
+      "usuarioId": "5i4eL2NtEb8",
+      "personajeId": "1",
+      "id": "E-mkan0RivU"
+    },
+    {
+      "usuarioId": "5i4eL2NtEb8",
+      "personajeId": "1",
+      "id": "6jhcjwR6Bj8"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

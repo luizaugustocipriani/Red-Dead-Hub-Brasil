@@ -20,6 +20,37 @@ window.removerFavoritoDoMural = function(id) {
     });
 };
 
+window.alternarFavorito = async function(personagemId) {
+    const usuarioLogado = obterUsuarioLogado();
+    if (!usuarioLogado || !usuarioLogado.id) {
+        alert("🤠 Ei parceiro, você precisa estar logado para favoritar!");
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_URL}/favoritos?usuarioId=${usuarioLogado.id}&personagemId=${personagemId}`);
+        const favExistente = await res.json();
+
+        if (favExistente.length > 0) {
+            const deleteRes = await fetch(`${API_URL}/favoritos/${favExistente[0].id}`, { method: "DELETE" });
+            if (deleteRes.ok) {
+                carregarDadosPrincipais();
+            }
+        } else {
+            const postRes = await fetch(`${API_URL}/favoritos`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ usuarioId: usuarioLogado.id, personagemId: personagemId })
+            });
+            if (postRes.ok) {
+                carregarDadosPrincipais();
+            }
+        }
+    } catch (error) {
+        console.error("Erro ao gerenciar favoritos:", error);
+    }
+};
+
 document.addEventListener("DOMContentLoaded", function () {
     gerenciarMenuAutenticacao();
 
@@ -100,7 +131,7 @@ async function carregarDadosPrincipais() {
 
         renderizarCarrossel(personagens.filter(p => p.destaque));
         renderizarCards(personagens, favoritos);
-        window.todosPersonagens = personagens; 
+        window.todosPersonagens = personajes; 
         window.meusFavoritos = favoritos;
     } catch (error) {
         console.error("Erro ao carregar dados do JSON Server:", error);
@@ -183,29 +214,6 @@ function configurarBarraPesquisa() {
                 renderizarCards(window.todosPersonagens, window.meusFavoritos || []);
             }
         });
-    }
-}
-
-async function alternarFavorito(personagemId) {
-    const usuarioLogado = obterUsuarioLogado();
-    if (!usuarioLogado || !usuarioLogado.id) return;
-
-    try {
-        const res = await fetch(`${API_URL}/favoritos?usuarioId=${usuarioLogado.id}&personagemId=${personagemId}`);
-        const favExistente = await res.json();
-
-        if (favExistente.length > 0) {
-            await fetch(`${API_URL}/favoritos/${favExistente[0].id}`, { method: "DELETE" });
-        } else {
-            await fetch(`${API_URL}/favoritos`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ usuarioId: usuarioLogado.id, personajeId: personagemId })
-            });
-        }
-        carregarDadosPrincipais();
-    } catch (error) {
-        console.error("Erro ao gerenciar favoritos:", error);
     }
 }
 
