@@ -56,12 +56,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+function obterUsuarioLogado() {
+    try {
+        const dados = sessionStorage.getItem("usuarioLogado");
+        if (!dados || dados === "undefined") return null;
+        return JSON.parse(dados);
+    } catch (e) {
+        console.error("Erro ao ler dados do utilizador:", e);
+        return null;
+    }
+}
+
 function gerenciarMenuAutenticacao() {
-    const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"));
+    const usuarioLogado = obterUsuarioLogado();
     const btnAuth = document.getElementById("btn-auth");
     const menuFavoritos = document.getElementById("menu-favoritos");
 
-    if (usuarioLogado) {
+    if (usuarioLogado && usuarioLogado.nome) {
         if (btnAuth) {
             btnAuth.innerText = `Logout (${usuarioLogado.nome.split(' ')[0]})`;
             btnAuth.href = "#";
@@ -81,8 +92,8 @@ async function carregarDadosPrincipais() {
         const personagens = await responsePers.json();
         
         let favoritos = [];
-        const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"));
-        if (usuarioLogado) {
+        const usuarioLogado = obterUsuarioLogado();
+        if (usuarioLogado && usuarioLogado.id) {
             const responseFav = await fetch(`${API_URL}/favoritos?usuarioId=${usuarioLogado.id}`);
             favoritos = await responseFav.json();
         }
@@ -120,16 +131,16 @@ function renderizarCards(personagens, favoritos) {
     const containerCards = document.getElementById("container-cards");
     if (!containerCards) return;
 
-    if (personagens.length === 0) {
+    if (!personagens || personagens.length === 0) {
         containerCards.innerHTML = `<div class="text-center text-muted my-4 w-100">Nenhum pistoleiro encontrado com esse critério de busca.</div>`;
         return;
     }
 
     let cardsHTML = "";
-    const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"));
+    const usuarioLogado = obterUsuarioLogado();
 
     personagens.forEach(p => {
-        const ehFavorito = favoritos.some(f => f.personagemId == p.id);
+        const ehFavorito = Array.isArray(favoritos) && favoritos.some(f => f.personagemId == p.id);
         const iconeCoracao = ehFavorito ? "❤️" : "🖤";
 
         cardsHTML += `
@@ -156,24 +167,28 @@ function configurarBarraPesquisa() {
     if (campoBusca) {
         campoBusca.addEventListener("input", function () {
             const termo = campoBusca.value.toLowerCase().trim();
-            const filtrados = window.todosPersonagens.filter(p => 
-                p.nome.toLowerCase().includes(termo) || p.descricao.toLowerCase().includes(termo)
-            );
-            renderizarCards(filtrados, window.meusFavoritos || []);
+            if (window.todosPersonagens) {
+                const filtrados = window.todosPersonagens.filter(p => 
+                    p.nome.toLowerCase().includes(termo) || p.descricao.toLowerCase().includes(termo)
+                );
+                renderizarCards(filtrados, window.meusFavoritos || []);
+            }
         });
     }
 
     if (btnLimpar) {
         btnLimpar.addEventListener("click", function () {
             campoBusca.value = "";
-            renderizarCards(window.todosPersonagens, window.meusFavoritos || []);
+            if (window.todosPersonagens) {
+                renderizarCards(window.todosPersonagens, window.meusFavoritos || []);
+            }
         });
     }
 }
 
 async function alternarFavorito(personagemId) {
-    const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"));
-    if (!usuarioLogado) return;
+    const usuarioLogado = obterUsuarioLogado();
+    if (!usuarioLogado || !usuarioLogado.id) return;
 
     try {
         const res = await fetch(`${API_URL}/favoritos?usuarioId=${usuarioLogado.id}&personagemId=${personagemId}`);
@@ -185,7 +200,7 @@ async function alternarFavorito(personagemId) {
             await fetch(`${API_URL}/favoritos`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ usuarioId: usuarioLogado.id, personagemId: personagemId })
+                body: JSON.stringify({ usuarioId: usuarioLogado.id, personajeId: personagemId })
             });
         }
         carregarDadosPrincipais();
@@ -248,14 +263,14 @@ async function renderizarPaginaDetalhes() {
 
 async function renderizarPaginaFavoritos() {
     const container = document.getElementById("container-favoritos");
-    const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"));
+    const usuarioLogado = obterUsuarioLogado();
     if (!usuarioLogado || !container) return;
 
     try {
         const responseFav = await fetch(`${API_URL}/favoritos?usuarioId=${usuarioLogado.id}`);
         const favoritos = await responseFav.json();
         
-        if (favoritos.length === 0) {
+        if (!favoritos || favoritos.length === 0) {
             container.innerHTML = `<div class="col-12 text-center py-5"><p class="text-center text-muted fs-5">Nenhum item favoritado por enquanto, parceiro.</p></div>`;
             return;
         }
@@ -264,6 +279,7 @@ async function renderizarPaginaFavoritos() {
 
         for (let fav of favoritos) {
             const idBusca = fav.personagemId || fav.dicaId || fav.artigoId;
+            if (!idBusca) continue;
             
             let categoria = "Geral";
             let rotaItem = "personagens";
