@@ -3,40 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Red Dead Hub - Login</title>
+    <title>Red Dead Hub - Identifique-se ou Aliste-se</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-danger">
+    <div class="container">
+        <a class="navbar-brand font-cinzel text-danger-custom fw-bold" href="index.html">RED DEAD HUB</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dicas.html">Dicas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contato.html">Contato</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active fw-bold text-danger-custom" href="login.html">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <main class="container text-center my-5">
-    <div class="bg-card-custom p-5 rounded border-danger-custom max-width-text mx-auto shadow-lg">
+    
+    <div id="card-login" class="bg-card-custom p-5 rounded border-danger-custom max-width-text mx-auto shadow-lg">
         <h2 class="text-danger-custom font-cinzel mb-4">Identifique-se, Foragido</h2>
         <form id="form-login">
             <div class="mb-3 text-start">
-                <label class="form-label text-light">Usuário (admin ou user)</label>
-                <input type="text" id="login-usuario" class="form-control" required>
+                <label class="form-label text-light">Usuário</label>
+                <input type="text" id="login-usuario" class="form-control" placeholder="Digite seu usuário..." required>
             </div>
             <div class="mb-4 text-start">
-                <label class="form-label text-light">Senha (123)</label>
-                <input type="password" id="login-senha" class="form-control" required>
+                <label class="form-label text-light">Senha</label>
+                <input type="password" id="login-senha" class="form-control" placeholder="Digite sua senha..." required>
             </div>
-            <button type="submit" class="btn btn-danger-custom w-100 py-2">Entrar no Saloon</button>
+            <button type="submit" class="btn btn-danger-custom w-100 py-2 mb-3">Entrar no Saloon</button>
+            <p class="text-center m-0 small text-muted">
+                Não tem uma conta? <a href="#" id="link-ir-cadastro" class="text-danger-custom fw-bold text-decoration-none">Aliste-se aqui</a>
+            </p>
         </form>
     </div>
+
+    <div id="card-cadastro" class="bg-card-custom p-5 rounded border-danger-custom max-width-text mx-auto shadow-lg d-none">
+        <h2 class="text-danger-custom font-cinzel mb-4">Aliste-se no Bando</h2>
+        <form id="form-cadastro">
+            <div class="mb-3 text-start">
+                <label class="form-label text-light">Nome Completo</label>
+                <input type="text" id="cad-nome" class="form-control" placeholder="Ex: John Marston" required>
+            </div>
+            <div class="mb-3 text-start">
+                <label class="form-label text-light">E-mail</label>
+                <input type="email" id="cad-email" class="form-control" placeholder="Ex: john@bando.com" required>
+            </div>
+            <div class="mb-3 text-start">
+                <label class="form-label text-light">Nome de Usuário (Login)</label>
+                <input type="text" id="cad-usuario" class="form-control" placeholder="Ex: marston123" required>
+            </div>
+            <div class="mb-4 text-start">
+                <label class="form-label text-light">Senha</label>
+                <input type="password" id="cad-senha" class="form-control" placeholder="Crie uma senha..." required>
+            </div>
+            <button type="submit" class="btn btn-danger-custom w-100 py-2 mb-3">Criar Minha Conta</button>
+            <p class="text-center m-0 small text-muted">
+                Já possui uma conta? <a href="#" id="link-ir-login" class="text-danger-custom fw-bold text-decoration-none">Clique aqui para Entrar</a>
+            </p>
+        </form>
+    </div>
+
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    const API_URL = "http://localhost:3000";
+    const cardLogin = document.getElementById("card-login");
+    const cardCadastro = document.getElementById("card-cadastro");
+
+    document.getElementById("link-ir-cadastro").addEventListener("click", function(e) {
+        e.preventDefault();
+        cardLogin.classList.add("d-none");
+        cardCadastro.classList.remove("d-none");
+    });
+
+    document.getElementById("link-ir-login").addEventListener("click", function(e) {
+        e.preventDefault();
+        cardCadastro.classList.add("d-none");
+        cardLogin.classList.remove("d-none");
+    });
+
     document.getElementById("form-login").addEventListener("submit", async function(e) {
         e.preventDefault();
-        const userIn = document.getElementById("login-usuario").value;
+        const userIn = document.getElementById("login-usuario").value.trim();
         const passIn = document.getElementById("login-senha").value;
-        const res = await fetch(`http://localhost:3000/usuarios?login=${userIn}&senha=${passIn}`);
-        const usuarios = await res.json();
-        if (usuarios.length > 0) {
-            sessionStorage.setItem("usuarioLogado", JSON.stringify(usuarios[0]));
-            window.location.href = "index.html";
-        } else {
-            alert("❌ Credenciais inválidas!");
+
+        try {
+            const res = await fetch(`${API_URL}/usuarios?login=${userIn}&senha=${passIn}`);
+            const usuarios = await res.json();
+            if (usuarios.length > 0) {
+                sessionStorage.setItem("usuarioLogado", JSON.stringify(usuarios[0]));
+                window.location.href = "index.html";
+            } else {
+                alert("❌ Credenciais inválidas ou usuário não cadastrado!");
+            }
+        } catch (error) {
+            alert("❌ Erro ao conectar com o servidor da API!");
+        }
+    });
+
+    document.getElementById("form-cadastro").addEventListener("submit", async function(e) {
+        e.preventDefault();
+        const nome = document.getElementById("cad-nome").value.trim();
+        const email = document.getElementById("cad-email").value.trim();
+        const login = document.getElementById("cad-usuario").value.trim();
+        const senha = document.getElementById("cad-senha").value;
+
+        try {
+            const verificarRes = await fetch(`${API_URL}/usuarios?login=${login}`);
+            const usuariosExistentes = await verificarRes.json();
+
+            if (usuariosExistentes.length > 0) {
+                alert("❌ Este nome de usuário já está sendo usado por outro foragido!");
+                return;
+            }
+
+            const novoUsuario = {
+                login: login,
+                senha: senha,
+                nome: nome,
+                email: email,
+                admin: false
+            };
+
+            const cadastrarRes = await fetch(`${API_URL}/usuarios`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(novoUsuario)
+            });
+
+            if (cadastrarRes.ok) {
+                alert("🤠 Conta criada com sucesso, parceiro! Agora faça seu login.");
+                document.getElementById("form-cadastro").reset();
+                cardCadastro.classList.add("d-none");
+                cardLogin.classList.remove("d-none");
+            }
+        } catch (error) {
+            alert("❌ Erro ao salvar o cadastro no servidor!");
         }
     });
 </script>

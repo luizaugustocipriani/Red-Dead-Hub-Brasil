@@ -1,5 +1,25 @@
 const API_URL = "http://localhost:3000";
 
+window.removerFavoritoDoMural = function(id) {
+    if (!confirm("Deseja remover este item dos seus favoritos, parceiro?")) return;
+
+    fetch(`${API_URL}/favoritos/${id}`, {
+        method: "DELETE"
+    })
+    .then(res => {
+        if (res.ok) {
+            alert("🤠 Item removido com sucesso!");
+            window.location.reload();
+        } else {
+            alert("❌ Erro ao tentar remover o item do servidor.");
+        }
+    })
+    .catch(error => {
+        console.error("Erro ao deletar:", error);
+        alert("❌ Erro de conexão com o servidor.");
+    });
+};
+
 document.addEventListener("DOMContentLoaded", function () {
     gerenciarMenuAutenticacao();
 
@@ -184,30 +204,30 @@ async function renderizarPaginaDetalhes() {
     try {
         const response = await fetch(`${API_URL}/personagens/${idParam}`);
         if (!response.ok) throw new Error();
-        const personagem = await response.json();
+        const presidential = await response.json();
 
-        document.title = `${personagem.nome} - Detalhes`;
+        document.title = `${presidential.nome} - Detalhes`;
         
         if (containerGeral) {
             containerGeral.innerHTML = `
                 <div class="row align-items-center bg-card-custom p-4 rounded border-danger-custom shadow-lg">
                     <div class="col-12 col-md-5 mb-4 mb-md-0 text-center">
-                        <img src="${personagem.imagem_principal}" alt="${personagem.nome}" class="img-fluid rounded border-danger-custom shadow" style="max-height: 400px; object-fit: cover;">
+                        <img src="${presidential.imagem_principal}" alt="${presidential.nome}" class="img-fluid rounded border-danger-custom shadow" style="max-height: 400px; object-fit: cover;">
                     </div>
                     <div class="col-12 col-md-7">
-                        <h2 class="text-danger-custom font-cinzel mb-2 text-start">${personagem.nome}</h2>
-                        <span class="badge bg-danger mb-3 px-3 py-2">${personagem.afiliacao}</span>
-                        <p class="lead text-white fw-bold mb-3">${personagem.descricao}</p>
-                        <p class="text-light text-justify">${personagem.conteudo}</p>
+                        <h2 class="text-danger-custom font-cinzel mb-2 text-start">${presidential.nome}</h2>
+                        <span class="badge bg-danger mb-3 px-3 py-2">${presidential.afiliacao}</span>
+                        <p class="lead text-white fw-bold mb-3">${presidential.descricao}</p>
+                        <p class="text-light text-justify">${presidential.conteudo}</p>
                         <hr class="border-secondary">
-                        <p class="small text-muted m-0">Catalogado em: ${personagem.data_cadastro} | ID Oficial: #${personagem.id}</p>
+                        <p class="small text-muted m-0">Catalogado em: ${presidential.data_cadastro} | ID Oficial: #${presidential.id}</p>
                     </div>
                 </div>`;
         }
         
-        if (containerVinculados && personagem.elementos_vinculados) {
+        if (containerVinculados && presidential.elementos_vinculados) {
             let vinculadosHTML = "";
-            personagem.elementos_vinculados.forEach(item => {
+            presidential.elementos_vinculados.forEach(item => {
                 vinculadosHTML += `
                     <div class="col-12 col-md-4">
                         <div class="bg-card-custom h-100 p-3 rounded border-danger-custom text-center shadow d-flex flex-column">
@@ -235,31 +255,58 @@ async function renderizarPaginaFavoritos() {
         const responseFav = await fetch(`${API_URL}/favoritos?usuarioId=${usuarioLogado.id}`);
         const favoritos = await responseFav.json();
         
-        if(favoritos.length === 0) {
-            container.innerHTML = `<div class="text-center text-muted my-4 w-100">Você ainda não favoritou nenhum pistoleiro, parceiro.</div>`;
+        if (favoritos.length === 0) {
+            container.innerHTML = `<div class="col-12 text-center py-5"><p class="text-center text-muted fs-5">Nenhum item favoritado por enquanto, parceiro.</p></div>`;
             return;
         }
 
-        let cardsHTML = "";
+        container.innerHTML = ""; 
+
         for (let fav of favoritos) {
-            const resPers = await fetch(`${API_URL}/personagens/${fav.personagemId}`);
-            if(resPers.ok) {
-                const p = await resPers.json();
-                cardsHTML += `
-                    <div class="col-12 col-md-4 mb-4">
-                        <article class="feature-box h-100 d-flex flex-column" style="background-color: var(--bg-card); border-left: 5px solid var(--red-primary);">
-                            <img src="${p.imagem_principal}" alt="${p.nome}" class="img-fluid rounded mb-3" style="height: 250px; object-fit: cover;">
-                            <h4 class="text-danger-custom font-cinzel text-center">${p.nome}</h4>
-                            <p class="text-truncate-custom flex-grow-1">${p.descricao}</p>
-                            <div class="text-center mt-3">
-                                <a href="detalhe.html?id=${p.id}" class="btn btn-danger-custom w-100">Ver Ficha Completa</a>
-                            </div>
-                        </article>
-                    </div>`;
+            const idBusca = fav.personagemId || fav.dicaId || fav.artigoId;
+            
+            let categoria = "Geral";
+            let rotaItem = "personagens";
+
+            if (fav.dicaId) {
+                categoria = "Dica";
+                rotaItem = "dicas";
+            } else if (fav.artigoId) {
+                categoria = "Artigo";
+                rotaItem = "artigos";
+            } else if (fav.personagemId) {
+                categoria = "Personagem";
+                rotaItem = "personagens";
             }
+
+            const resPers = await fetch(`${API_URL}/${rotaItem}/${idBusca}`);
+            
+            let nomeItem = "Item Favoritado";
+            let descItem = "Sem descrição disponível.";
+
+            if (resPers.ok) {
+                const itemDados = await resPers.json();
+                nomeItem = itemDados.nome || itemDados.titulo || nomeItem;
+                descItem = itemDados.descricao || itemDados.conteudo || descItem;
+            }
+
+            const col = document.createElement("div");
+            col.className = "col-md-4 mb-4";
+            col.innerHTML = `
+                <article class="h-100 d-flex flex-column justify-content-between" style="background-color: var(--bg-card); padding: 25px; border-radius: 12px; border-left: 5px solid var(--red-primary); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);">
+                    <div>
+                        <h2 class="text-danger-custom font-cinzel text-center" style="font-size: 1.6rem; min-height: 76px; display: flex; align-items: center; justify-content: center;">${nomeItem}</h2>
+                        <p class="text-muted small mb-2">Categoria: ${categoria}</p>
+                        <p class="text-truncate-custom">${descItem}</p>
+                    </div>
+                    <button class="btn btn-secondary w-100 mt-3" style="background: linear-gradient(45deg, #7b0000, var(--red-bright)) !important; color: white !important; border: none !important; padding: 12px 24px; border-radius: 6px; font-weight: 500;" onclick="removerFavoritoDoMural('${fav.id}')">
+                        ❌ Remover
+                    </button>
+                </article>
+            `;
+            container.appendChild(col);
         }
-        container.innerHTML = cardsHTML;
-    } catch(err) {
+    } catch (err) {
         console.error(err);
     }
 }

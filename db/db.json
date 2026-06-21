@@ -95,6 +95,14 @@
       "nome": "Usuario Comum",
       "email": "user@abc.com",
       "admin": false
+    },
+    {
+      "id": "5i4eL2NtEb8",
+      "login": "gutoxcipriani",
+      "senha": "Guto2007.",
+      "nome": "luiz augusto",
+      "email": "gutoxcipriani@gmail.com",
+      "admin": false
     }
   ],
   "favoritos": []

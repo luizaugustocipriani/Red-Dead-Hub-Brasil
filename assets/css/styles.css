@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght=600;800&family=Poppins:wght=300;400;500;700&display=swap');
 
 :root {
     --bg-main: #141210;
@@ -19,31 +19,42 @@ body {
     line-height: 1.8;
 }
 
-header {
-    background-color: var(--bg-card);
-    text-align: center;
-    padding: 40px 10px;
-    border-bottom: 4px solid var(--red-primary);
+header, .navbar {
+    background-color: var(--bg-card) !important;
+    padding: 20px 10px;
+    border-bottom: 4px solid var(--red-primary) !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
-header h1 {
+header h1, .navbar-brand {
     font-family: 'Cinzel', serif;
-    font-size: 3rem;
-    color: var(--red-bright);
+    color: var(--red-bright) !important;
     text-shadow: 3px 3px 8px #000;
-    margin-bottom: 20px;
     letter-spacing: 2px;
 }
 
-.nav {
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.nav, .navbar-nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
 }
 
-.nav .nav-link {
-    color: var(--text-light);
+.nav .nav-link, .navbar-nav .nav-link {
+    color: var(--text-light) !important;
     text-decoration: none;
     margin: 0 12px;
     font-size: 1.1rem;
@@ -53,7 +64,7 @@ header h1 {
     transition: all 0.3s ease;
 }
 
-.nav .nav-link:hover {
+.nav .nav-link:hover, .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
     background-color: var(--red-primary);
     color: #fff !important;
     box-shadow: 0 0 12px rgba(139, 0, 0, 0.6);
@@ -242,7 +253,7 @@ article p {
 }
 
 .form-control, select.form-select {
-    background-color: var(--bg-card) !important;
+    background-color: var(--bg-main) !important;
     color: var(--text-light) !important;
     border: 2px solid #3a322c !important;
     border-radius: 6px;
@@ -251,7 +262,7 @@ article p {
 }
 
 .form-control::placeholder {
-    color: var(--text-muted);
+    color: #7a7066;
 }
 
 select.form-select option {
@@ -299,7 +310,7 @@ footer p {
 }
 
 .text-muted {
-    color: #b0b0b0 !important; 
+    color: #f2efe9 !important; 
 }
 
 .form-control:focus, 
@@ -347,6 +358,11 @@ select:focus {
     -webkit-box-orient: vertical;
     overflow: hidden;
     line-clamp: 3;
+}
+
+a.text-danger-custom:hover {
+    color: #ff0000 !important;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
 }
 
 @media (max-width: 768px) {
