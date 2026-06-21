@@ -1,0 +1,101 @@
+{
+  "personagens": [
+    {
+      "id": "1",
+      "nome": "Arthur Morgan",
+      "descricao": "O braço direito da gangue Van der Linde e um combatente implacável.",
+      "conteudo": "Arthur é um homem prático, leal e complexo, criado por Dutch desde a sua juventude. Suas decisões ao longo do enredo definem sua jornada de redenção e moldam o destino de todos que o cercam no acampamento.",
+      "afiliacao": "Gangue Van der Linde",
+      "destaque": true,
+      "data_cadastro": "2026-05-29",
+      "imagem_principal": "assets/img/arthur_main.jpg",
+      "elementos_vinculados": [
+        {
+          "id": 101,
+          "nome": "Revólver de Vaqueiro",
+          "descricao": "Sua arma curta customizada mais icônica e confiável.",
+          "imagem": "assets/img/vaqueiro.jpg"
+        },
+        {
+          "id": 102,
+          "nome": "Cavalo Puro Sangue Árabe",
+          "descricao": "Lendária montaria encontrada nas terras geladas do Lago Isabella.",
+          "imagem": "assets/img/cavalo.jpg"
+        },
+        {
+          "id": 103,
+          "nome": "Olho da Morte (Dead Eye)",
+          "descricao": "Habilidade incomparável de desacelerar o tempo em combate intenso.",
+          "imagem": "assets/img/olho_da_morte.jpg"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "nome": "John Marston",
+      "descricao": "O protegido que busca proteger seu próprio futuro e sua jovem família.",
+      "conteudo": "John cresceu sob a tutela de Dutch, mas se vê dividido entre as obrigações morais com os foragidos e o dever de se tornar um pai e marido de verdade para Jack e Abigail.",
+      "afiliacao": "Gangue Van der Linde",
+      "destaque": false,
+      "data_cadastro": "2026-05-28",
+      "imagem_principal": "assets/img/john_main.jpg",
+      "elementos_vinculados": [
+        {
+          "id": 201,
+          "nome": "Rifle de Repetição Lancaster",
+          "descricao": "Arma de longo alcance perfeita para emboscadas nos desfiladeiros.",
+          "imagem": "assets/img/lancaster.jpg"
+        },
+        {
+          "id": 202,
+          "nome": "Equipamentos do Armadilheiro",
+          "descricao": "Coldres e cartucheiras confeccionadas com peles perfeitas.",
+          "imagem": "assets/img/coldres.jpg"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "nome": "Dutch van der Linde",
+      "descricao": "O líder carismático, idealista e visionário de todo o bando.",
+      "conteudo": "Um homem que se enxerga como um Robin Hood moderno, liderando uma cruzada utópica contra o avanço da civilization e as amarras do governo. Sua ambição é o motor da gangue.",
+      "afiliacao": "Líder da Gangue",
+      "destaque": true,
+      "data_cadastro": "2026-05-27",
+      "imagem_principal": "assets/img/dutch_main.jpg",
+      "elementos_vinculados": [
+        {
+          "id": 301,
+          "nome": "Revólveres Schofield Duplos",
+          "descricao": "Par de revólveres gravados com acabamentos em ouro e madrepérola.",
+          "imagem": "assets/img/revolver_dutch.jpg"
+        },
+        {
+          "id": 302,
+          "nome": "Anotações e Planos",
+          "descricao": "Seus cadernos cheios de ideias para alcançar uma vida de liberdade.",
+          "imagem": "assets/img/diario_john.jpg"
+        }
+      ]
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "1",
+      "login": "admin",
+      "senha": "123",
+      "nome": "Administrador do Sistema",
+      "email": "admin@abc.com",
+      "admin": true
+    },
+    {
+      "id": "2",
+      "login": "user",
+      "senha": "123",
+      "nome": "Usuario Comum",
+      "email": "user@abc.com",
+      "admin": false
+    }
+  ],
+  "favoritos": []
+}
