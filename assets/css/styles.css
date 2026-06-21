@@ -361,7 +361,6 @@ select:focus {
     }
 }
 
-/* Altera a cor do crachá para Laranja */
 .badge.bg-danger {
     background-color: #ff5500 !important;
     --bs-bg-opacity: 1 !important;
